@@ -115,20 +115,23 @@ class Game:
             if total == self._connectN:
                 return True
         
+        # Check diagonal
         total = 0
         for r in range(row):
             c = row + col - r
-            if c in range(col) and grid[r][c] == pieceColour:
+            if c >= 0 and c < col and grid[r][c] == pieceColour:
                 total += 1
             else:
                 total = 0
             if total == self._connectN:
+                print("diagonal found")
                 return True
-            
+
+        # Check anti-diagonal
         total = 0
         for r in range(row):
-            c = row - col + r
-            if c in range(col) and grid[r][c] == pieceColour:
+            c = col - row + r
+            if c >= 0 and c < col and grid[r][c] == pieceColour:
                 total += 1
             else:
                 total = 0
@@ -157,8 +160,8 @@ class Game:
             print(row)
         print("")
 
-grid = Grid(7, 7)
-game = Game(grid, 4, 3)
+grid = Grid(2, 2)
+game = Game(grid, 2, 3)
 game.playGame()
 
     
